@@ -1,0 +1,29 @@
+{
+  "name": "nerd-talks",
+  "version": "1.0.0",
+  "description": "Tech Blog",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naomilounsbury/nerd-talks.git"
+  },
+  "author": "Naomi Lounsbury",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naomilounsbury/nerd-talks/issues"
+  },
+  "homepage": "https://github.com/Naomilounsbury/nerd-talks#readme",
+  "dependencies": {
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
+    "express-session": "^1.17.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.15.0"
+  }
+}
