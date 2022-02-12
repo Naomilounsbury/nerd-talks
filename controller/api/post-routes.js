@@ -9,8 +9,8 @@ router.get('/', (req, res) => {
   Post.findAll({
     attributes: [
       'id',
-      'post_url',
-      'title',
+      'post_title',
+      'post_text',
       'created_at',
    
     ],
@@ -45,8 +45,8 @@ router.get('/:id', (req, res) => {
     },
     attributes: [
       'id',
-      'post_url',
-      'title',
+      'post_title',
+      'post_text',
       'created_at'
     ],
     include: [
@@ -64,7 +64,7 @@ router.get('/:id', (req, res) => {
       }
     ]
   })
-    .then(dbPostData => {
+    .then(postData => {
       if (!postData) {
         res.status(404).json({ message: 'Oopsie, there is no post with this id' });
         return;
@@ -79,8 +79,8 @@ router.get('/:id', (req, res) => {
 //post a post with auth
 router.post('/', withAuth, (req, res) => {
   Post.create({
-    title: req.body.title,
-    post_url: req.body.post_url,
+    post_title: req.body.post_title,
+    post_text: req.body.post_text,
     user_id: req.session.user_id
   })
     .then(postData => res.json(postData))
@@ -93,7 +93,7 @@ router.post('/', withAuth, (req, res) => {
 router.put('/:id', withAuth, (req, res) => {
   Post.update(
     {
-      title: req.body.title
+      post_title: req.body.post_title
     },
     {
       where: {
@@ -106,7 +106,7 @@ router.put('/:id', withAuth, (req, res) => {
         res.status(404).json({ message: 'Oopsie, there is no post with this id' });
         return;
       }
-      res.json(dbPostData);
+      res.json(postData);
     })
     .catch(err => {
       console.log(err);
@@ -121,12 +121,12 @@ router.delete('/:id', withAuth, (req, res) => {
       id: req.params.id
     }
   })
-    .then(dbPostData => {
-      if (!dbPostData) {
+    .then(postData => {
+      if (!postData) {
         res.status(404).json({ message: 'Oopsie, there is no post with this id' });
         return;
       }
-      res.json(dbPostData);
+      res.json(postData);
     })
     .catch(err => {
       console.log(err);

@@ -3,6 +3,8 @@ const sequelize = require('../config/connection');
 
 class Comment extends Model {}
 
+//the comment is going to need two foreign keys one for post and one for user
+
 Comment.init(
   {
     id: {
@@ -14,9 +16,6 @@ Comment.init(
     comment_text: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [1]
-      }
     },
     user_id: {
       type: DataTypes.INTEGER,

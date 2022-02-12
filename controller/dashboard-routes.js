@@ -13,8 +13,8 @@ router.get('/', withAuth, (req, res) => {
     },
     attributes: [
       'id',
-      'post_url',
-      'title',
+      'post_title',
+      'post_text',
       'created_at'
     ],
     include: [
@@ -32,8 +32,8 @@ router.get('/', withAuth, (req, res) => {
       }
     ]
   })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
+    .then(postData => {
+      const posts = postData.map(post => post.get({ plain: true }));
       res.render('dashboard', { posts, loggedIn: true });
     })
     .catch(err => {
@@ -46,8 +46,8 @@ router.get('/edit/:id', withAuth, (req, res) => {
   Post.findByPk(req.params.id, {
     attributes: [
       'id',
-      'post_url',
-      'title',
+      'post_title',
+      'post_text',
       'created_at'
     ],
     include: [
@@ -65,11 +65,11 @@ router.get('/edit/:id', withAuth, (req, res) => {
       }
     ]
   })
-    .then(dbPostData => {
-      if (dbPostData) {
-        const post = dbPostData.get({ plain: true });
+    .then(postData => {
+      if (postData) {
+        const post = postData.get({ plain: true });
         
-        res.render('edit-post', {
+        res.render('editposts', {
           post,
           loggedIn: true
         });

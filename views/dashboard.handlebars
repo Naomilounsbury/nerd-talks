@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>newpost</title>
+    <title>Dashboard</title>
 </head>
 <body>
-    </html><div>You are on the create new post page</div>
+    <div class="posts"
+{{#each posts as |post|}}
+  <div class="post-header">
+    {{post_title}}
+  </div>
+  <div class="card-body">
+  {{post_title}}
+
+  </div>
+  {{/each}}
+</div>
 </body>
+</html>
