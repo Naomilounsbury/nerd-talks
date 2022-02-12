@@ -1,0 +1,5 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS nerd_talks_db;
+
+-- CREATE DATABASE
+CREATE DATABASE nerd_talks_db;
