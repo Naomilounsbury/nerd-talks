@@ -3,43 +3,22 @@ const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 
 // get all posts for all posts
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   console.log('======================');
-  Post.findAll({
-    attributes: [
-      'id',
-      'post_url',
-      'title',
-      'created_at',
-    ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
-      },
-      {
-        model: User,
-        attributes: ['username']
-      }
-    ]
+ try {
+   const postData = await
+   Post.findAll({
+    include: [User]
   })
-    .then(postData => {
+    //.then(postData => {
       const posts = postData.map(post => post.get({ plain: true }));
 
-      res.render('allposts', {
-        posts
-        
-        // loggedIn: req.session.loggedIn
-      });
-    })
-    .catch(err => {
+      res.render('allposts', { posts });
+    //})
+}catch (err){
       console.log(err);
       res.status(500).json(err);
-    });
+    };
 });
 
 // get single post
@@ -50,8 +29,7 @@ router.get('/post/:id', (req, res) => {
     },
     attributes: [
       'id',
-      'post_url',
-      'title',
+      'post_title',
       'created_at',
    
     ],
@@ -97,5 +75,12 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+router.get('/signup',(req, res)=>{
+  if(req.session.loggedIn){
+    res.redirect('/');
+    return;
+}
+  res.render('signup')
+})
 
 module.exports = router;
