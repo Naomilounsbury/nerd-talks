@@ -80,6 +80,9 @@ router.post("/", withAuth, (req, res) => {
       res.status(500).json(err);
     });
 });
+router.get('/newpost', (req, res) => {
+  res.render('newpost');
+});
 //update a post with auth
 router.put("/:id", withAuth, (req, res) => {
   Post.update(

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 //putting all the page navigtion in one spot
-const apiRoutes = require('./api/');
+const apiRoutes = require('./api');
 const homeRoutes = require('./home-routes.js');
 const dashboardRoutes = require('./dashboard-routes.js');
 

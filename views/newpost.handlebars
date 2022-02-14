@@ -7,20 +7,21 @@
       <input type="text" id="post-title" name="post-title" />
     </div>
     <div>
-      <label for="post-description">Blog</label>
-      <input type="teaxarea" id="post-description" name="post-description"/>
+      <label for="post-text">Blog</label>
+      <input type="teaxarea" id="post-text" name="post-text"/>
     </div>
     <button type="submit" class="btn">Create</button>
   </form>
 </section>
 
-{{#if posts.user.username}}
+{{#if posts.user_id}}
 <section>
   <h2>Your Posts</h2>
   <ol>
     {{#each posts as |post|}}
     <li>
-      {{> post-info post}}
+      {{post.post_title}}
+      {{post.post_text}}
       <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
     </li>
     {{comments post.comments}}
@@ -29,5 +30,5 @@
 </section>
 {{/if}}
 
-<script src="/javascript/newpost.js"></script>
+<script src="/js/newpost.js"></script>
 

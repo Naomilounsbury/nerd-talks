@@ -10,6 +10,7 @@ router.use("/users", userRoutes);
 router.get("/", (req, res) => {
   res.render("dashboard");
 });
+
 // router.get("/", (req, res) => {
 //   res.render("homepage", post);
 // });
@@ -17,5 +18,6 @@ router.get("/", (req, res) => {
 router.use((req, res) => {
   res.send(`<h1>${req.path}Wrong Route!</h1>`);
 });
+
 
 module.exports = router;

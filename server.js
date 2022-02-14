@@ -26,6 +26,7 @@ app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+//sets the path to static so I just have to use js/signup instead of public/js/signup
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(controller);

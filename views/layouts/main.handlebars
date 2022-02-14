@@ -15,14 +15,27 @@
 
   <body>
     <div class="wrapper">
+      
       <header>
         <h1>
           <a href="/">Nerd Talks</a>
         </h1>
       </header>
+      {{log loggedIn}}
+          {{#if loggedIn}}
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+    <!-- Otherwise, show a link to login -->
+    <a href="/login">Login</a>
+    {{/if}}
+  </nav>
       <main>
         {{{body}}}
       </main>
+      <!-- If the user is logged in, load the JS script for when they logout -->
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
       <footer >
         Thanks for visiting!
       </footer>

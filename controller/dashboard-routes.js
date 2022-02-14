@@ -38,7 +38,7 @@ router.get('/', withAuth, async (req, res) => {
     // .then(postData => {
       //this is mapping the data in an array
       const posts = postData.map(post => post.get({ plain: true }));
-      res.render('dashboard', { posts, loggedIn: req.session.loggedIn});
+      res.render('allposts', { layouts:"dashboard", posts, loggedIn: req.session.loggedIn});
     
   }catch(err) {
       console.log(err);
@@ -46,6 +46,7 @@ router.get('/', withAuth, async (req, res) => {
     };
     
 })
+
 
 router.get('/edit/:id', withAuth, (req, res) => {
   //find by primary key is similar to find one but faster

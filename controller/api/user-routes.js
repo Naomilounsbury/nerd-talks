@@ -2,89 +2,51 @@ const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// get all users
-// router.get("/", (req, res) => {
-//   User.findAll({
-//     attributes: { exclude: ["password"] },
-//   })
-//     .then((dbUserData) => res.json(dbUserData))
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
-// //get one user by id
-// router.get("/:id", (req, res) => {
-//   User.findOne({
-//     attributes: { exclude: ["password"] },
-//     where: {
-//       id: req.params.id,
-//     },
-//     include: [
-//       {
-//         model: Post,
-//         attributes: ["id", "title", "post_url", "created_at"],
-//       },
-//       {
-//         model: Comment,
-//         attributes: ["id", "comment_text", "created_at"],
-//         include: {
-//           model: Post,
-//           attributes: ["title"],
-//         },
-//       },
-//     ],
-//   })
-//     .then((userData) => {
-//       if (!userData) {
-//         res
-//           .status(404)
-//           .json({ message: "Oopsie, there is no user with this id" });
-//         return;
-//       }
-//       res.json(userData);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
+
 //create a user
-router.post("/signup", (req, res) => {
+router.post("/signup", async (req, res) => {
+  try{
+    console.log("STARTING SIGNUP")
+  const newUser = await
   User.create({
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
   })
-    .then((userData) => {
+  console.log("STARTING SAVE SESSION")
+    //.then((userData) => {
       req.session.save(() => {
-        req.session.user_id = userData.id;
-        req.session.username = userData.username;
+        req.session.user_id = newUser.id;
+        req.session.username = newUser.username;
         req.session.loggedIn = true;
 
-        res.json(userData);
+        res.json(newUser);
+        console.log("SIGNUP DONE")
       });
-    })
-    .catch((err) => {
+    //})
+    }catch(err){
       console.log(err);
       res.status(500).json(err);
-    });
+    };
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
+  try{
+  const loginUser = await
   User.findOne({
     where: {
       email: req.body.email,
     },
-  }).then((userData) => {
-    if (!userData) {
+  })
+  //.then((userData) => {
+    if (!loginUser) {
       res
         .status(400)
         .json({ message: "Oopsie, there is no user with that email address" });
       return;
     }
     //checkpassword is a function in the user model
-    const validPassword = userData.checkPassword(req.body.password);
+    const validPassword = loginUser.checkPassword(req.body.password);
 
     if (!validPassword) {
       res.status(400).json({ message: "Incorrect password!" });
@@ -92,13 +54,18 @@ router.post("/login", (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.username = userData.username;
+      req.session.user_id = loginUser.id;
+      req.session.username = loginUser.username;
       req.session.loggedIn = true;
 
-      res.json({ user: userData, message: "You are now logged in!" });
+      res.json({ user: loginUser, message: "You are now logged in!" });
     });
-  });
+  //});
+}
+catch(err){
+  console.log(err)
+  res.status(500).json(err)
+}
 });
 
 router.post("/logout", (req, res) => {
