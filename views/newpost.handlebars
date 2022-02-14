@@ -1,4 +1,33 @@
+<section>
+  <h2>Create New Post</h2>
 
-<body>
-    </html><div>You are on the create new post page</div>
-</body>
+  <form class="create-post-form">
+    <div>
+      <label for="post-title">Title</label>
+      <input type="text" id="post-title" name="post-title" />
+    </div>
+    <div>
+      <label for="post-description">Blog</label>
+      <input type="teaxarea" id="post-description" name="post-description"/>
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+</section>
+
+{{#if posts.user.username}}
+<section>
+  <h2>Your Posts</h2>
+  <ol>
+    {{#each posts as |post|}}
+    <li>
+      {{> post-info post}}
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+    </li>
+    {{comments post.comments}}
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+<script src="/javascript/newpost.js"></script>
+

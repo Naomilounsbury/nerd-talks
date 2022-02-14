@@ -1,4 +1,6 @@
     <div>Homepage</div>
+    {{log posts}}
 {{#each posts as |post|}}
-{{post_title}}
+<div><a href = {{url}}/post/{{id}}>{{post_title}}</a></div>
+<div>{{created_at}}</div>
 {{/each}} 

@@ -8,12 +8,17 @@ router.get('/', async (req, res) => {
  try {
    const postData = await
    Post.findAll({
+     attributes:[
+       "id",
+       "post_title",
+       "created_at"
+     ],
     include: [User]
   })
     //.then(postData => {
       const posts = postData.map(post => post.get({ plain: true }));
 
-      res.render('allposts', { posts });
+      res.render('allposts', { posts, url:req.path });
     //})
 }catch (err){
       console.log(err);
@@ -30,6 +35,7 @@ router.get('/post/:id', (req, res) => {
     attributes: [
       'id',
       'post_title',
+      'post_text',
       'created_at',
    
     ],
@@ -69,7 +75,7 @@ router.get('/post/:id', (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 
@@ -77,7 +83,7 @@ router.get('/login', (req, res) => {
 });
 router.get('/signup',(req, res)=>{
   if(req.session.loggedIn){
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
 }
   res.render('signup')

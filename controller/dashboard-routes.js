@@ -4,10 +4,12 @@ const { Post, User, Comment} = require('../models');
 const withAuth = require('../utils/auth');
 
 // get all posts for dashboard
-
-router.get('/', withAuth, (req, res) => {
+//three parameters path,auth, callback
+//I want this to be async so add async
+router.get('/', withAuth, async (req, res) => {
   console.log(req.session);
   console.log('======================');
+  try {const postData = await 
   Post.findAll({
     where: {
       user_id: req.session.user_id
@@ -33,16 +35,17 @@ router.get('/', withAuth, (req, res) => {
       }
     ]
   })
-    .then(postData => {
+    // .then(postData => {
       //this is mapping the data in an array
       const posts = postData.map(post => post.get({ plain: true }));
       res.render('dashboard', { posts, loggedIn: req.session.loggedIn});
-    })
-    .catch(err => {
+    
+  }catch(err) {
       console.log(err);
       res.status(500).json(err);
-    });
-});
+    };
+    
+})
 
 router.get('/edit/:id', withAuth, (req, res) => {
   //find by primary key is similar to find one but faster
