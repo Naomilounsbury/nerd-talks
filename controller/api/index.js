@@ -7,9 +7,7 @@ router.use("/post", postRoutes);
 router.use("/comments", commentsRoutes);
 router.use("/users", userRoutes);
 
-router.get("/", (req, res) => {
-  res.render("dashboard");
-});
+
 
 // router.get("/", (req, res) => {
 //   res.render("homepage", post);

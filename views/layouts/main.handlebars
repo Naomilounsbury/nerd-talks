@@ -14,12 +14,17 @@
   </head>
 
   <body>
-    <div class="wrapper">
-      
-      <header>
-        <h1>
-          <a href="/">Nerd Talks</a>
-        </h1>
+     <header>
+       <nav>
+         <div class="nav-wrapper">
+           <a href="#" class="brand-logo center">Nerd Talks</a>
+             <ul id="nav-mobile" class="right white-text">
+               <li><a href="/allposts">Browse Posts</a></li>
+               <li><a href="/dashboard">Your Homepage</a></li>
+               <li><a href="#">Logout</a></li>
+              </ul>
+          </div>
+        </nav>
       </header>
       {{log loggedIn}}
           {{#if loggedIn}}

@@ -40,7 +40,8 @@ User.init(
   {
     hooks: {
       // set up beforeCreate lifecycle "hook" functionality
-      //
+      // The server still gets the datat but it knows theres a hook here 
+      //so it say to itself, Ive got to run this code before i create it in the database
       
       async beforeCreate(newUserData) {
         console.log(newUserData)
