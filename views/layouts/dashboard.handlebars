@@ -16,9 +16,18 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>
-          <a href="/">Nerd Talks</a>
-        </h1>
+       <nav>
+         <div class="nav-wrapper">
+           <a href="#" class="brand-logo center">Nerd Talks</a>
+             <ul id="nav-mobile" class="right white-text">
+               <li><a href="/allposts">Browse Posts</a></li>
+               {{#if loggedIn}}
+               <li><a href="/dashboard">Your Dashboard</a></li>
+               {{/if}}
+               <li><a href="#">Logout</a></li>
+              </ul>
+          </div>
+        </nav>
       </header>
            {{#if loggedIn}}
     <button id="logout" class="btn-no-style">Logout</button>
