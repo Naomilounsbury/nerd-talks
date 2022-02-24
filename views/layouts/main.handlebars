@@ -19,20 +19,21 @@
          <div class="nav-wrapper">
            <a href="#" class="brand-logo center">Nerd Talks</a>
              <ul id="nav-mobile" class="right white-text">
-               <li><a href="/allposts">Browse Posts</a></li>
-               <li><a href="/dashboard">Your Dashboard</a></li>
-               <li><a href="#">Logout</a></li>
+               <li><a href="/">Browse Posts</a></li>
+               <li><a href="/dash">Your Dashboard</a></li>
+              {{#if loggedIn}}
+              {{log loggedIn}}
+                <button id="logout" class="btn">
+                  <li><a href="#">Logout</a></li></button>
+              {{else}}
+                <button id="login" class="btn">
+                  <li><a href="/login">Login</a></li></button>
+              {{/if}}
               </ul>
           </div>
         </nav>
       </header>
-      {{log loggedIn}}
-          {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <!-- Otherwise, show a link to login -->
-    <a href="/login">Login</a>
-    {{/if}}
+    
   </nav>
       <main>
         {{{body}}}

@@ -69,16 +69,16 @@ const withAuth = require("../../utils/auth");
 // });
 //post a post with auth
 router.post("/", withAuth, (req, res) => {
+  console.log("POST START");
   Post.create({
     post_title: req.body.post_title,
     post_text: req.body.post_text,
     user_id: req.session.user_id,
-  })
-    .then((postData) => res.json(postData))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  }).then((postData) => res.json(postData));
+  console.log(postData, "THE DATA").catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 router.get("/newpost", (req, res) => {
   res.render("newpost");

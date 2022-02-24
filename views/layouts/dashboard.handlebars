@@ -4,45 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>nerd</title>
-       <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Import materialize.css-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
   <body>
     <div class="wrapper">
       <header>
-       <nav>
-         <div class="nav-wrapper">
-           <a href="#" class="brand-logo center">Nerd Talks</a>
-             <ul id="nav-mobile" class="right white-text">
-               <li><a href="/allposts">Browse Posts</a></li>
-               {{#if loggedIn}}
-               <li><a href="/dashboard">Your Dashboard</a></li>
-               {{/if}}
-               <li><a href="#">Logout</a></li>
-              </ul>
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Nerd Talks</a>
+            <ul id="nav-mobile" class="right white-text">
+              <li><a href="/">Browse Posts</a></li>
+              <li><a href="/dash">Your Dashboard</a></li>
+
+              {{#if loggedIn}}
+                {{log loggedIn}}
+                <button id="logout" class="btn">
+                  <li><a href="#">Logout</a></li></button>
+              {{else}}
+                <button id="login" class="btn">
+                  <li><a href="/login">Login</a></li></button>
+              {{/if}}
+
+            </ul>
           </div>
         </nav>
       </header>
-           {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{/if}}
       <main>
         {{{body}}}
       </main>
-      <button id="create-post" class="btn-no-style"><a href="api/post/newpost">Create Post</a></button>
-      <footer >
+      <footer>
         Thanks for visiting!
       </footer>
     </div>
     <script src="/public/js/logout.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+    ></script>
   </body>
 
 </html>
-    

@@ -3,14 +3,14 @@ const sequelize = require("../config/connection");
 const { Post, User, Comment } = require("../models");
 
 // get all posts for all posts
-router.get("/:user_id", async (req, res) => {
-  console.log("======================");
+router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
       attributes: ["id", "post_title", "created_at"],
       include: [User],
     });
     //.then(postData => {
+    console.log(req.session, "COWS");
     const posts = postData.map((post) => post.get({ plain: true }));
 
     res.render("home", {
