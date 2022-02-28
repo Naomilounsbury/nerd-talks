@@ -1,31 +1,33 @@
+<div class="container">
+  <div class="row">
 
-    <div>You are on the view specific post</div>
-    <div> {{post.post_title}}</div>
-    <div> {{post.post_text}}</div>
-    <div> {{post.user.username}}</div>
-    <div> {{post.created_at}}</div>
-
-{{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-  </div>
-
-  <div>
-    <button type="submit">add comment</button>
-  </div>
-  {{#each post.comments as |comment|}}
-<div> {{comment.comment_text}}</div>
-<div> {{comment.user.username}}</div>
+<div>Blog Post</div>
+<div> {{post.post_title}}</div>
+<div> {{post.post_text}}</div>
+<div> {{post.user.username}}</div>
+<div> {{formatDate post.created_at}}</div>
+<div class="comments">Comments</div>
+{{#each post.comments as |comment|}}
+  <div> {{comment.comment_text}}</div>
+  <div> by: {{comment.user.username}}</div>
 {{/each}}
-</form>
+{{#if loggedIn}}
+
+  <form class="comment-form">
+    <div>
+      <textarea name="comment-body"></textarea>
+    </div>
+
+    <div>
+      <button type="submit">add comment</button>
+    </div>
+
+  </form>
+  </div>
+  </div>
 {{/if}}
 
 {{#if loggedIn}}
-<script src="/js/comment.js"></script>
+  <script src="/js/comment.js"></script>
 {{/if}}
-
-
-{{log post}}
-
 

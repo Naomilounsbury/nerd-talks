@@ -21,6 +21,7 @@ async function loginFormHandler(event) {
     }
   }
 }
-document
-  .querySelector(".login-form")
-  .addEventListener("submit", loginFormHandler);
+const loginBtn = document.querySelector(".login-form");
+if (loginBtn) {
+  loginBtn.addEventListener("submit", loginFormHandler);
+}

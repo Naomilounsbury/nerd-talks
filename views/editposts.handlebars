@@ -5,30 +5,33 @@
   </h2>
   <form class="edit-post-form">
     <div>
-      <input name="post-title" type="text" value="{{post.title}}" />
-     
+      <label name="post-title">{{post.post_title}}</label>
+      <input
+        name="post-title"
+        id="post-title"
+        type="text"
+        value="{{post.post_title}}"
+      />
     </div>
     <div>
-
-    {{post.comments}}</a>
+      <label name="post-text">{{post.post_text}}</label>
+      <input
+        name="post-text"
+        id="post-text"
+        type="text"
+        value="{{post.post_text}}"
+      />
     </div>
+    {{#each post.comments as |comment|}}
+      <div> {{comment.comment_text}}</div>
+      <span> {{comment.user.username}}</span>
+    {{/each}}
     <button type="submit">Save post</button>
     <button type="button" class="delete-post-btn">Delete post</button>
   </form>
 </article>
 
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-  </div>
-
-  <div>
-    <button type="submit">add comment</button>
-  </div>
-</form>
-
 {{post.comments}}
 
 <script src="/js/edit.js"></script>
 <script src="/js/deletepost.js"></script>
-<script src="/js/comment.js"></script>

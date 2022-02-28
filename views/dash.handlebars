@@ -17,13 +17,17 @@
 <section>
   <h2>Your Posts</h2>
   <ol>
-    {{log posts}}
+    {{!-- {{log posts}} --}}
     {{#each posts as |post|}}
       <li>
-        {{post_title}}
-        {{post_text}}
-        {{post.comments}}
-        <a href="/dash/edit/{{id}}" class="edit-link">Edit post</a>
+        <p>{{post_title}}</p>
+        <p>{{post_text}}</p>
+        <a href="dash/edit/{{id}}" class="edit-link">Edit post</a>
+        {{#each post.comments as |comment|}}
+          <p> {{comment.comment_text}}</p>
+          <span> {{comment.user.username}}</span>
+        {{/each}}
+
       </li>
     {{/each}}
   </ol>

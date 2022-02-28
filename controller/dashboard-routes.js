@@ -6,7 +6,7 @@ const withAuth = require("../utils/auth");
 // get all posts for dashboard
 //three parameters path,auth, callback
 //I want this to be async so add async
-router.get("/dash", withAuth, async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   console.log(req.session, "DOGS");
   console.log("======================");
   try {
@@ -52,7 +52,7 @@ router.get("/dash", withAuth, async (req, res) => {
   }
 });
 
-router.put("/edit/:id", withAuth, (req, res) => {
+router.get("/edit/:id", withAuth, (req, res) => {
   //find by primary key is similar to find one but faster
   Post.findByPk(req.params.id, {
     attributes: ["id", "post_title", "post_text", "created_at"],

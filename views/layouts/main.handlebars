@@ -16,17 +16,17 @@
   <body>
      <header>
        <nav>
-         <div class="nav-wrapper">
+         <div class="nav-wrapper purple accent-3">
            <a href="#" class="brand-logo center">Nerd Talks</a>
              <ul id="nav-mobile" class="right white-text">
                <li><a href="/">Browse Posts</a></li>
                <li><a href="/dash">Your Dashboard</a></li>
               {{#if loggedIn}}
-              {{log loggedIn}}
-                <button id="logout" class="btn">
+              {{!-- {{log loggedIn}} --}}
+                <button id="logout" class="btn purple darken-4">
                   <li><a href="#">Logout</a></li></button>
               {{else}}
-                <button id="login" class="btn">
+                <button id="login" class="btn purple darken-4">
                   <li><a href="/login">Login</a></li></button>
               {{/if}}
               </ul>

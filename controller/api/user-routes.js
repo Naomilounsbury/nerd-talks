@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
       req.session.username = loginUser.username;
       req.session.loggedIn = true;
 
-      res.json({ user: loginUser, message: "You are now logged in!" });
+      return res.json({ user: loginUser, message: "You are now logged in!" });
     });
     //});
   } catch (err) {

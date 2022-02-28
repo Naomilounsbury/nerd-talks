@@ -11,7 +11,7 @@ router.use("/api", apiRoutes);
 //router.use('/login', login-apiRoutes)
 
 router.get("/dash", (req, res) => {
-  res.render("dash");
+  res.render("dash", { layout: "dashboard", loggedIn: req.session.loggedIn });
 });
 
 module.exports = router;
