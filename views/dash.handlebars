@@ -1,36 +1,49 @@
-<section>
-  <h2>Create New Post</h2>
+<div class="container">
+  <div class="row">
+    <div class="col s6">
+      <section>
+        <h2 class="center-align purple-text text-darken-4">Create New Post</h2>
 
-  <form class="new-post-form">
-    <div>
-      <label for="post-title">Title</label>
-      <input type="text" id="post-title" name="post-title" />
+        <form class="new-post-form">
+          <div>
+            <label for="post-title">Title</label>
+            <input type="text" id="post-title" name="post-title" />
+          </div>
+          <div>
+            <label for="post-text">Text</label>
+            <input id="post-text" name="post-text" />
+          </div>
+          <button type="submit" class="btn purple darken-4">Create</button>
+        </form>
+      </section>
     </div>
-    <div>
-      <label for="post-text">Text</label>
-      <input id="post-text" name="post-text" />
+    <div class="col s6">
+      <section>
+        <h2 class="center-align purple-text text-darken-4">Your Posts</h2>
+        <ol>
+          {{!-- {{log posts}} --}}
+          {{#each posts as |post|}}
+            <li>
+              <a href="/post/{{id}}"><p
+                  class="purple-text text-darken-4"
+                >{{post_title}}</p></a>
+              <p class="purple-text text-darken-4">{{post_text}}</p>
+              <a href="dash/edit/{{id}}" class="edit-link">Edit post</a>
+
+              {{#each post.comments as |comment|}}
+                <p class="purple-text text-darken-4">
+                  {{comment.comment_text}}</p>
+                <span class="purple-text text-darken-4">
+                  {{comment.user.username}}</span>
+              {{/each}}
+
+            </li>
+          {{/each}}
+        </ol>
+      </section>
     </div>
-    <button type="submit" class="btn">Create</button>
-  </form>
-</section>
+  </div>
+</div>
 
-<section>
-  <h2>Your Posts</h2>
-  <ol>
-    {{!-- {{log posts}} --}}
-    {{#each posts as |post|}}
-      <li>
-        <p>{{post_title}}</p>
-        <p>{{post_text}}</p>
-        <a href="dash/edit/{{id}}" class="edit-link">Edit post</a>
-        {{#each post.comments as |comment|}}
-          <p> {{comment.comment_text}}</p>
-          <span> {{comment.user.username}}</span>
-        {{/each}}
-
-      </li>
-    {{/each}}
-  </ol>
-</section>
 <script src="/js/dashboard.js"></script>
 <script src="/js/newpost.js"></script>

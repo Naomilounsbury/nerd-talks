@@ -26,12 +26,12 @@
       <div> {{comment.comment_text}}</div>
       <span> {{comment.user.username}}</span>
     {{/each}}
-    <button type="submit">Save post</button>
-    <button type="button" class="delete-post-btn">Delete post</button>
+    <button type="submit" class="btn purple darken-4">Save post</button>
+    <button type="button" class="delete-post-btn btn purple darken-4">Delete
+      post</button>
   </form>
 </article>
 
 {{post.comments}}
-
-<script src="/js/edit.js"></script>
 <script src="/js/deletepost.js"></script>
+<script src="/js/edit.js"></script>

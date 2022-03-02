@@ -14,8 +14,10 @@
 {{/each}}
 {{else}}
 {{#each posts as |post|}}
-<div class = "purple-text text-darken-4"><a href = /post/{{post.id}}>{{post.post_title}}</a></div>
-<div class="purple-text text-darken-4">Please login to view these posts.</div>
+<div class="col s12 card-panel">
+<div class = "purple-text text-darken-4"><a href="/login">{{post.post_title}}</a></div>
+<div class="purple-text text-darken-4">Please login to view this posts.</div>
+</div>
 {{/each}}
 {{/if}}
 </div>
