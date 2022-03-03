@@ -1,29 +1,31 @@
-console.log("SIGNUPFORMBEGINNING")
+console.log("SIGNUPFORMBEGINNING");
 async function signupFormHandler(event) {
-    event.preventDefault();
-  
-    const username = document.querySelector('#username-signup').value.trim();
-    const email = document.querySelector('#email-signup').value.trim();
-    const password = document.querySelector('#password-signup').value.trim();
-  console.log({username, email, password})
-    if (username && email && password) {
-      const response = await fetch('/api/users/signup', {
-        method: 'post',
-        body: JSON.stringify({
-          username,
-          email,
-          password
-        }),
-        headers: { 'Content-Type': 'application/json' }
-      });
-  console.log(response)
-  console.log("SIGNUP RESPONSE")
-      if (response.ok) {
-        document.location.replace('/dashboard');
-      } else {
-        alert(response.statusText);
-      }
+  event.preventDefault();
+
+  const username = document.querySelector("#username-signup").value.trim();
+  const email = document.querySelector("#email-signup").value.trim();
+  const password = document.querySelector("#password-signup").value.trim();
+  console.log({ username, email, password });
+  if (username && email && password) {
+    const response = await fetch("/api/users/signup", {
+      method: "post",
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+    console.log(response);
+    console.log("SIGNUP RESPONSE");
+    if (response.ok) {
+      document.location.replace("/dash");
+    } else {
+      alert(response.statusText);
     }
   }
+}
 
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+document
+  .querySelector(".signup-form")
+  .addEventListener("submit", signupFormHandler);
