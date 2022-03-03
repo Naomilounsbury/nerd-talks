@@ -21,25 +21,29 @@
       <section>
         <h2 class="center-align purple-text text-darken-4">Your Posts</h2>
         <ol>
+
           {{!-- {{log posts}} --}}
           {{#each posts as |post|}}
-            <li>
-              <a href="/post/{{id}}"><p
-                  class="purple-text text-darken-4"
-                >{{post_title}}</p></a>
+            <div class="card-panel hoverable">
+              <a href="/post/{{id}}"><h5
+                  class="purple-text text-darken-4 center-align"
+                >{{post_title}}</h5></a>
               <p class="purple-text text-darken-4">{{post_text}}</p>
+              <p>{{formatDate created_at}}</p>
               <a href="dash/edit/{{id}}" class="edit-link">Edit post</a>
-
+              <h6>Comments</h6>
               {{#each post.comments as |comment|}}
                 <p class="purple-text text-darken-4">
                   {{comment.comment_text}}</p>
                 <span class="purple-text text-darken-4">
-                  {{comment.user.username}}</span>
+                  --{{comment.user.username}}
+                  {{formatDate comment.created_at}}</span>
               {{/each}}
-
-            </li>
+            </div>
           {{/each}}
+
         </ol>
+
       </section>
     </div>
   </div>

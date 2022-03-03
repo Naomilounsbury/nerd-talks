@@ -8,7 +8,6 @@ const withAuth = require("../utils/auth");
 //I want this to be async so add async
 router.get("/", withAuth, async (req, res) => {
   console.log(req.session, "DOGS");
-  console.log("======================");
   try {
     const postData = await Post.findAll({
       where: {
@@ -40,7 +39,7 @@ router.get("/", withAuth, async (req, res) => {
     //this is mapping the data in an array
     console.log(req.session, "PIGS");
     const posts = postData.map((post) => post.get({ plain: true }));
-    console.log(req.session, "FUCK");
+    console.log(req.session, "DUDE");
     res.render("dash", {
       layouts: "dashboard",
       posts,

@@ -8,9 +8,8 @@
 <div> Date Created: {{formatDate post.created_at}}</div>
 <h5 class="comments black-text center-align">Comments</h5>
 {{#each post.comments as |comment|}}
-<h6> Author: {{comment.user.username}}</h6>
   <p> {{comment.comment_text}}</p>
-  
+  <p>--{{comment.user.username}} {{formatDate comment.created_at}}</p>
 {{/each}}
 {{#if loggedIn}}
 
